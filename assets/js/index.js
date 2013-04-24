@@ -11,10 +11,10 @@ $(document).ready(function(){
 	/* prepare display */
 	$('#drossl-display')
 	.hide()
-	.append('<p>Ihr Internetzugang wird nach <strong><span id="display-hours"></span> Stunden <span id="display-minutes"></span> Minuten</strong> vollständiger Nutzung im Monat gedrosselt.</p>')
-	.append('<p>Die tatsächliche durchschnittliche Geschwindigkeit ihres Zugangs beträgt <strong>maximal <span id="display-speed"></span> Mbit/s</strong>.</p>')
-	.append('<p>Sie können pro Monat <strong>maximal <span id="display-volume"></span> GB</strong> übertragen (Ungedrosselt: <span id="display-flatvolume"></span> GB).</p>')
-	.append('<p>Ihr Internetzugang ist somit <a href="https://soundcloud.com/david1701/funktional-kaputt">funktional kaputt</a>.</p>')
+	.append('<p>Bei voller Nutzung wird Ihr Internetzugang bereits nach <strong><span id="display-hours"></span>&nbsp;Stunden&nbsp;<span id="display-minutes"></span>&nbsp;Minuten</strong> im Monat gedrosselt.</p>')
+	.append('<p>Die tatsächliche durchschnittliche Geschwindigkeit Ihres Zugangs beträgt somit <strong>nur <span id="display-speed"></span> Mbit/s</strong>.</p>')
+	.append('<p>Sie können pro Monat <strong>maximal <span id="display-volume"></span> GB</strong> übertragen (Ungedrosselt wären es <span id="display-flatvolume"></span> GB)</p>')
+	.append('<p>Die Drosselung schränkt Ihren Internetzugang in seiner wichtigsten Funktionalität (Datenübertragung) ein von 100% runter auf <span id="display-bandwidthpercent"></span>% und macht ihn damit <a href="https://soundcloud.com/david1701/funktional-kaputt">funktional kaputt</a>.</p>')
 	.append('<p><small>Hintergründe zur Drosselung finden Sie bei <a href="https://netzpolitik.org/tag/deutsche-telekom/">Netzpolitik.org</a>, mehr zum Thema Netzneutralität finden Sie bei der Kampagne <a href="http://echtesnetz.de/">Echtes Netz</a></small></p>')
 	.append('<p><small>Wie sich das Internet mit 384 Kbit/s anfühlt <a href="https://vimeo.com/64641982">auf Vimeo ansehen</a>.</small></p>');
 
@@ -68,6 +68,8 @@ function display(data) {
 		$('#display-minutes').text(data.time_inkl_m);
 		$('#display-hours').text(data.time_inkl_h);
 		$('#display-volume').text(data.volume_total_gb.toFixed(0).replace('.',','));
+		$('#display-bandwidthpercent').text(data.bandwidth_percent.toFixed(1).replace('.',','));
+		$('#display-volumepercent').text(data.volume_percent.toFixed(1).replace('.',','));
 		$('#display-flatvolume').text(data.flatvolume_total_gb.toFixed(0).replace('.',','));
 		$('#drossl-info').hide();
 		$('#drossl-display').show();

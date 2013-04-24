@@ -76,12 +76,17 @@ var drossel = function(bandwidth_mbits, callback) {
 		/* the maximum volume you can get through the connection in gibibyte */
 		data.flatvolume_total_gb = (((data.bandwidth_kbits*2629800)/8)/(1024*1024));
 		
+		/* percentage of the actual volume vs. the claimed volume */
+		data.volume_percent = 100*data.volume_total_gb/data.flatvolume_total_gb;
+		
 		/* the maximum average bandwith in kibibit/s */
 		data.bandwith_real_kbits = (data.volume_total_kbit/2629800);
 		
 		/* the maximum average bandwith in mebibit/s */
 		data.bandwith_real_mbits = (data.bandwith_real_kbits/1024);
 	
+		data.bandwidth_percent = 100*0.375/data.bandwidth_mbits;
+		
 		callback(data);
 	
 	}
