@@ -21,21 +21,15 @@ $(document).ready(function(){
 	/* preset dropdown */
 	$('#drossl-presets a').click(function(evt){
 		$('#bandwidth_mbits').val($(this).attr('data-preset'));
-		drossel($(this).attr('data-preset'), function(data){
-			display(data);
-		});
+		updateDisplay();
 	});
 	
 	$('#bandwidth_mbits').change(function(evt){
-		drossel($(this).val(), function(data){
-			display(data);
-		});
+		updateDisplay();
 	});
 	
-	$('#drossl-submit').click(function(){
-		drossel($('#bandwidth_mbits').val(), function(data){
-			display(data);
-		});
+	$('#bandwidth_mbits').keyup(function(){
+		setTimeout(function(){updateDisplay();}, 1);
 	});
 	
 	$('#drossl-embed-close').click(function(){
@@ -57,6 +51,12 @@ $(document).ready(function(){
 	}
 	
 });
+
+function updateDisplay() {
+	drossel($('#bandwidth_mbits').val(), function(data){
+		display(data);
+	});
+}
 
 /* display */
 function display(data) {
