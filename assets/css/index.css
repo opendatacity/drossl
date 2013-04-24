@@ -79,6 +79,7 @@ body {
 		#bandwidth_mbits {
 			
 			width: 150px;
+			text-align: right;
 			
 		}
 
