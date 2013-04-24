@@ -1,0 +1,430 @@
+body {
+	
+	background: #fff;
+	font-family: "Source Sans Pro", "Helvetica", "Arial", sans-serif;
+	height: 100%;
+	
+}
+
+	header {
+		
+		display: block;
+		position: relative;
+		clear: both;
+		width: 600px;
+		margin: 20px auto;
+		
+	}
+	
+		header h1 {
+			
+			display: block;
+			position: relative;
+			width: 540px;
+			height: 200px;
+			margin: 0px auto;
+			padding: 0px;
+			text-align: left;
+			
+		}
+		
+			header h1 a {
+				
+				display: block;
+				position: relative;
+				width: 540px;
+				height: 200px;
+				line-height: 200px;
+				font-size: 140px;
+				text-decoration: none;
+				color: #d07;
+				font-family: "Leckerli";
+				font-weight: normal;
+				text-shadow: 0px 0px 25px rgba(0,0,0,0.1);
+				
+			}
+			
+				header h1 a:hover,
+				header h1 a:active,
+				header h1 a:focus {
+	
+					color: #c06;
+					text-decoration: none;
+					
+				}
+			
+	#drossl-form-container {
+		
+		display: block;
+		position: relative;
+		background-color: #fff;
+		border-top: 1px solid #ebebeb;
+		border-bottom: 1px solid #ebebeb;
+		margin: 0px;
+		padding: 20px 10px 10px;
+		box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.1);
+		
+	}
+	
+		#drossl-form {
+			
+			display: block;
+			position: relative;
+			width: 540px;
+			margin: 0px auto;
+			text-align: left;
+			
+		}
+
+		#bandwidth_mbits {
+			
+			width: 150px;
+			
+		}
+
+		#drossl-form .btn {
+			
+			margin-left: 10px;
+			
+		}
+		
+		#drossl-form small {
+			
+			color: #666;
+			
+		}
+
+		#drossl-form li:hover small {
+			
+			color: #ccc;
+			
+		}
+		
+	#drossl-info {
+		
+		display: block;
+		position: relative;
+		width: 540px;
+		margin: 50px auto 100px;
+		padding: 0px;
+		font-size: 1.4em;
+		line-height: 1.2em;
+		color: #999;
+		text-align: justify;
+		
+	}
+	
+	#drossl-display {
+		
+		display: block;
+		position: relative;
+		width: 540px;
+		margin: 50px auto 100px;
+		padding: 0px;
+		font-size: 1.4em;
+		line-height: 1.2em;
+		color: #333;
+		text-align: left;
+		
+	}
+	
+		#drossl-display strong {
+			
+			color: #000;
+			font-weight: 650;
+			
+		}
+
+		#drossl-info a,
+		#drossl-info a:focus,
+		#drossl-info a:active,
+		#drossl-info a:hover,
+		#drossl-display a,
+		#drossl-display a:focus,
+		#drossl-display a:active,
+		#drossl-display a:hover {
+			
+			color: #d07;
+			text-decoration: none;
+			
+		}
+		
+		#drossl-display small {
+			
+			color: #666;
+			margin-top: 50px;
+			
+		}
+		
+
+	footer {
+		
+		display: block;
+		position: fixed;
+		bottom: 0px;
+		right: 0px;
+		left: 0px;
+		margin: 0px;
+		padding: 0px;
+		border-top: 1px solid #ebebeb;
+		color: #666;
+		background-color: #fff;
+		
+	}
+	
+		footer p {
+		
+			display: block;
+			position: relative;
+			margin: 0px;
+			padding: 0px 10px;
+			min-height: 50px;
+			line-height: 50px;
+		
+		}
+
+		.in-frame footer p {
+			
+			min-height: 30px;
+			line-height: 30px;
+			
+		}
+
+			footer p a {
+				
+				color: #666 !important;
+				
+			}
+
+		footer .sponsor {
+			
+			display: block;
+			height: 50px !important;
+			max-height: 50px !important;
+			line-height: 50px;
+			padding: 0px 10px;
+			margin: 0px;
+			padding-right: 120px;
+
+		}
+		
+			.in-frame footer .sponsor {
+				
+				height: 30px !important;
+				max-height: 30px !important;
+				line-height: 30px;
+				
+			}
+		
+			.not-in-frame footer .sponsor a {
+				
+				display: block;
+				position: absolute;
+				right: 0px;
+				top: 0px;
+				width: 111px;
+				height: 50px;
+				text-indent: -99999px;
+				text-decoration: none;
+				color: transparent;
+				background: url(../img/sponsor-mnet.png) right center no-repeat;
+				
+			}
+		
+		footer .cc-by {
+			
+			display: block;
+			position: relative;
+			width: 50px;
+			height: 50px;
+			text-indent: -99999px;
+			text-decoration: none;
+			color: transparent;
+			background: url(../img/cc-by.png) center center no-repeat;
+			
+		}
+		
+		.in-frame footer .cc-by {
+			
+			height: 30px;
+			
+		}
+		
+		
+		.in-frame footer .odc,
+		.in-frame footer .embed,
+		.in-frame footer .social a span,
+		.in-frame footer .sponsor {
+			
+			display: none;
+			
+		}
+		
+		footer .social {}
+
+			footer .social a {
+				
+				margin-left: 10px;
+				white-space: nowrap;
+				
+			}
+
+			footer .social a i {
+				
+				color: #ccc;
+				
+			}
+	
+@media screen and (max-width: 640px) {
+
+	header {
+		
+		margin: 10px;
+		width: auto;
+		text-align: left;
+		
+	}
+	
+		header h1 {
+			
+			width: 300px;
+			height: 80px;
+			margin: 0px;
+			padding: 0px;
+			z-index: 1;
+			text-align: left;
+			
+		}
+		
+			header h1 a {
+				
+				width: 300px;
+				height: 80px;
+				line-height: 80px;
+				font-size: 60px !important;
+				
+			}
+			
+		#drossl-form {
+			
+			width: auto;
+			
+		}
+			
+		#drossl-display,
+		#drossl-info {
+			
+			width: auto;
+			padding: 0px 20px;
+			
+		}
+
+		footer {
+
+			display: block;
+			position: relative;
+			width: auto;
+			margin: 0px;
+			padding: 0px 10px;
+
+		}
+			
+}
+
+@media screen and (max-width: 320px) {
+
+	#main {
+		
+		max-width: 320px;
+		overflow: hidden;
+		
+	}
+
+	#bandwidth_mbits {
+		
+		width: 80px;
+		
+	}
+	
+	footer .sponsor {
+		
+		display: block;
+		position: relative;
+		float: none;
+		width: 180px;
+		height: 50px;
+		border-bottom: 1px solid #ebebeb;
+		
+	}
+	
+	footer .sponsor a {
+		
+		right: 50px !important;
+		
+	}
+
+	footer .cc-by, 
+	footer .license, 
+	footer .social, 
+	footer .odc {
+		
+		height: 30px;
+		min-height: 30px;
+		line-height: 30px;
+		
+	}
+	
+	footer .social a span {
+		
+		display: none;
+		
+	}
+	
+
+}
+
+#drossl-embed-container {
+	
+	display: none;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	padding: 20px;
+	background-color: rgba(255,255,255,0.9);
+	z-index: 2;
+	
+}
+
+	#drossl-embed {
+
+		max-width: 480px;
+		margin: 50px auto;
+
+	}
+	
+	#drossl-embed h2 {
+
+		font-size: 3.3em;
+		line-height: 1.4em;
+		font-weight: normal;
+
+	}
+	
+	#drossl-embed p {
+		
+		font-size: 1.4em;
+		line-height: 1.2em;
+		
+	}
+
+	#drossl-embed code {
+		
+		display: block;
+		white-space: normal;
+		color: #333;
+		padding: 10px;
+		margin-bottom: 10px;
+		
+	}
