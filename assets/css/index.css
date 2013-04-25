@@ -16,6 +16,18 @@ body {
 		
 	}
 	
+		header a#drossl-embed-show {
+			position: absolute;
+			margin-top: -40px;
+			right: 80px;
+			font-size: 18px;
+			color: #999;
+			
+			header a#drossl-embed-show i {
+				color: #ccc;
+			}
+		}
+		
 		header h1 {
 			
 			display: block;
@@ -280,6 +292,10 @@ body {
 		
 	}
 	
+		header a#drossl-embed-show {
+			display: none
+		}
+		
 		header h1 {
 			
 			width: 300px;
