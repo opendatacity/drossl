@@ -36,7 +36,7 @@ $(document).ready(function(){
 		$('#drossl-embed-container').hide();
 	});
 
-	$('#drossl-embed-show').click(function(){
+	$('a.embed').click(function(){
 		$('#drossl-embed-container').show();
 	});
 	

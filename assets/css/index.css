@@ -16,17 +16,18 @@ body {
 		
 	}
 	
-		header a#drossl-embed-show {
+		header #drossl-embed-show-again {
 			position: absolute;
 			margin-top: -40px;
 			right: 80px;
 			font-size: 18px;
 			color: #999;
 			
-			header a#drossl-embed-show i {
+		}
+
+			header #drossl-embed-show-again i {
 				color: #ccc;
 			}
-		}
 		
 		header h1 {
 			
