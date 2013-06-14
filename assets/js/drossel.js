@@ -1,7 +1,6 @@
 /*
 	drossel.js – calculate deutsche telekom bandwith throttling
 	created by sebastian vollnhals
-	
 */
 
 var drossel = function(bandwidth_mbits, callback) {
@@ -10,20 +9,20 @@ var drossel = function(bandwidth_mbits, callback) {
 		to me it's unclear if decimal or binary prefixes are used. i spent
 		one hour researching that topic on the telekom website, reading throuh
 		loads of faqs, service descriptions and footnotes with no result whatsoever.
-		i'm guessing binary prefixes. if you know better, let me know
+		i'm guessing binary prefixes. if you know better, let me know.
+		one limitation: this calculation does not care about upstream bandwith. 
+		update: now with a residual bandwith od 2048 kibibit/s
 	*/
 	
-	/*
-		one limitation: this calculation does not care about upstream bandwith. 
-	*/
+	var data = {};
+
+	data.residual_bandwidth_kbits = 2048;
 	
 	/* no callback, no fun */
 	if (typeof callback !== "function") return;
 
 	/* parse input */
-	var data = {
-		bandwidth_mbits: parseFloat(bandwidth_mbits.toString().replace(/,/,'.').replace(/[^0-9\.]/,''))
-	}
+	data.bandwidth_mbits = parseFloat(bandwidth_mbits.toString().replace(/,/,'.').replace(/[^0-9\.]/,''));
 	
 	/* validate input */
 	if (isNaN(data.bandwidth_mbits) || data.bandwidth_mbits === 0 || data.bandwidth_mbits > 200) {
@@ -34,6 +33,11 @@ var drossel = function(bandwidth_mbits, callback) {
 		
 		/* convert cable bandwith from mebibit/s to kibibit/s */
 		data.bandwidth_kbits = (data.bandwidth_mbits*1024);
+
+		/* make sure residual bandwidth is not bigger than actual bandwidth */
+		if (data.residual_bandwidth_kbits > data.bandwidth_kbits) {
+			data.residual_bandwidth_kbits = data.bandwidth_kbits;
+		}
 
 		/* determine included transfer volume by cable bandwith */
 		if (data.bandwidth_kbits > 102400) { // 100 mebibit/s
@@ -62,7 +66,7 @@ var drossel = function(bandwidth_mbits, callback) {
 		data.time_throttled_s = (2629800-data.time_inkl_s);
 		
 		/* the transfer volume you get through the throttled connection in kibibit */
-		data.volume_throttled_kbit = (384*data.time_throttled_s);
+		data.volume_throttled_kbit = (data.residual_bandwidth_kbits*data.time_throttled_s);
 		
 		/* the maximum volume you can get through the connection in kibibit */
 		data.volume_total_kbit = (data.volume_inkl_kbit+data.volume_throttled_kbit);
@@ -85,7 +89,7 @@ var drossel = function(bandwidth_mbits, callback) {
 		/* the maximum average bandwith in mebibit/s */
 		data.bandwith_real_mbits = (data.bandwith_real_kbits/1024);
 	
-		data.bandwidth_percent = 100*0.375/data.bandwidth_mbits;
+		data.bandwidth_percent = 100*data.bandwith_real_mbits/data.bandwidth_mbits;
 		
 		callback(data);
 	

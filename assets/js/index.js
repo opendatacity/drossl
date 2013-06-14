@@ -11,12 +11,21 @@ $(document).ready(function(){
 	/* prepare display */
 	$('#drossl-display')
 	.hide()
+	.append('<div id="drossl-display-throttled"></div>')
+	.append('<div id="drossl-display-unthrottled"></div>')
+	.append('<p><small>Hintergründe zur Drosselung finden Sie bei <a href="https://netzpolitik.org/tag/deutsche-telekom/">Netzpolitik.org</a>, mehr zum Thema Netzneutralität finden Sie bei der Kampagne <a href="http://echtesnetz.de/">Echtes Netz</a></small></p>')
+	.append('<p><small>Wie sich das Internet mit 384 Kbit/s anfühlt <a href="https://vimeo.com/64641982">auf Vimeo ansehen</a>.</small></p>')
+	
+	$('#drossl-display-throttled')
+	.hide()
 	.append('<p>Bei voller Nutzung wird Ihr Internetzugang bereits nach <strong><span id="display-hours"></span>&nbsp;Stunden&nbsp;<span id="display-minutes"></span>&nbsp;Minuten</strong> im Monat gedrosselt.</p>')
 	.append('<p>Die tatsächliche durchschnittliche Geschwindigkeit Ihres Zugangs beträgt somit <strong>nur <span id="display-speed"></span> Mbit/s</strong>.</p>')
 	.append('<p>Sie können pro Monat <strong>maximal <span id="display-volume"></span> GB</strong> übertragen (Ungedrosselt wären es <span id="display-flatvolume"></span> GB)</p>')
 	.append('<p>Die Drosselung schränkt Ihren Internetzugang in seiner wichtigsten Funktionalität ein (Datenübertragung) von 100% runter auf <span id="display-bandwidthpercent"></span>% und macht ihn damit <a href="https://soundcloud.com/david1701/funktional-kaputt">funktional kaputt</a>.</p>')
-	.append('<p><small>Hintergründe zur Drosselung finden Sie bei <a href="https://netzpolitik.org/tag/deutsche-telekom/">Netzpolitik.org</a>, mehr zum Thema Netzneutralität finden Sie bei der Kampagne <a href="http://echtesnetz.de/">Echtes Netz</a></small></p>')
-	.append('<p><small>Wie sich das Internet mit 384 Kbit/s anfühlt <a href="https://vimeo.com/64641982">auf Vimeo ansehen</a>.</small></p>');
+
+	$('#drossl-display-unthrottled')
+	.hide()
+	.append('<p>Die Bandbreite ihres Internetzuganges ist bereits stärker eingeschränkt, als es die Drosselung der Deutschen Telekom bewirken würde. Sie erleben bereits heute die Bandbreitenbeschränkung von morgen.</p>');
 
 	/* preset dropdown */
 	$('#drossl-presets a').click(function(evt){
@@ -64,13 +73,21 @@ function display(data) {
 		$('#drossl-display').hide();
 		$('#drossl-info').show();
 	} else {
-		$('#display-speed').text(data.bandwith_real_mbits.toFixed(3).replace('.',','));
-		$('#display-minutes').text(data.time_inkl_m);
-		$('#display-hours').text(data.time_inkl_h);
-		$('#display-volume').text(data.volume_total_gb.toFixed(0).replace('.',','));
-		$('#display-bandwidthpercent').text(data.bandwidth_percent.toFixed(1).replace('.',','));
-		$('#display-volumepercent').text(data.volume_percent.toFixed(1).replace('.',','));
-		$('#display-flatvolume').text(data.flatvolume_total_gb.toFixed(0).replace('.',','));
+		
+		if (data.volume_percent < 100) {
+			$('#drossl-display-unthrottled').hide();
+			$('#drossl-display-throttled').show();
+			$('#display-speed').text(data.bandwith_real_mbits.toFixed(3).replace('.',','));
+			$('#display-minutes').text(data.time_inkl_m);
+			$('#display-hours').text(data.time_inkl_h);
+			$('#display-volume').text(data.volume_total_gb.toFixed(0).replace('.',','));
+			$('#display-bandwidthpercent').text(data.bandwidth_percent.toFixed(1).replace('.',','));
+			$('#display-volumepercent').text(data.volume_percent.toFixed(1).replace('.',','));
+			$('#display-flatvolume').text(data.flatvolume_total_gb.toFixed(0).replace('.',','));
+		} else {
+			$('#drossl-display-throttled').hide();
+			$('#drossl-display-unthrottled').show();
+		}
 		$('#drossl-info').hide();
 		$('#drossl-display').show();
 	}
